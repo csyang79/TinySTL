@@ -52,7 +52,7 @@ namespace TinySTL
 			}
 			else
 			{
-				_obj* volatile *_my_free_list = _free_list + 
+				_obj** _my_free_list = _free_list + 
 					_free_list_index(_n);
 				_obj* _result = *_my_free_list;
 				if (result == nullptr)
@@ -72,7 +72,7 @@ namespace TinySTL
 				free(p);
 			else
 			{
-				_obj* volatile *_my_free_list = _free_list + _free_list_index(_n);
+				_obj** _my_free_list = _free_list + _free_list_index(_n);
 				_obj* _q = (_obj*) _p;
 				_q->_next = *_my_free_list;
 				*_my_free_list = _q;

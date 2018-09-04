@@ -9,11 +9,11 @@ namespace TinySTL
 	alloc::obj *alloc::_free_list[alloc::_NFREELISTS] = 
 		{ 0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0 };
 
-	void *_refill(size_t _n)
+	void *alloc::_refill(size_t _n)
 	{
 		int _nobjs = 20;
 		char *_chunk = _chunk_alloc(_n, _nobjs);
-		_obj* volatile *_my_free_list;
+		_obj** _my_free_list;
 		_obj* _result;
 		_obj* _curr_obj;
 		_obj* _next_obj;
@@ -65,7 +65,7 @@ namespace TinySTL
 			size_t _bytes_to_get = 2 * _total_bytes + _round_up(_heap_size >> 4);
 			if (_bytes_left > 0)
 			{
-				_obj *volatile *_my_free_list = _free_list + _free_list_index(_bytes_left);
+				_obj** _my_free_list = _free_list + _free_list_index(_bytes_left);
 				(_obj*)_start_free->_next = *_my_free_list;
 				*_my_free_list = (_obj*)_start_free;
 			}
@@ -74,7 +74,7 @@ namespace TinySTL
 			if (_start_free == nullptr)
 			{
 				size_t _i;
-				_obj *volatile *_my_free_list;
+				_obj** _my_free_list;
 				_obj *_p;
 				for (_i = _size; _i <= (size_t)_MAX_BYTES; _i += _ALIGN)
 				{
