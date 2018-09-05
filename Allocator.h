@@ -1,8 +1,8 @@
 #ifndef _ALLOCATOR_H
 #define _ALLOCATOR_H
 
-#include "alloc.h"
-#include "construct.h"
+#include "Alloc.h"
+#include "Construct.h"
 #include <cassert>
 #include <new>
 

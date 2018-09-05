@@ -2,7 +2,7 @@
 #define _CONSTRUCT_H
 
 #include <new>
-#include "typeTraits.h"
+#include "TypeTraits.h"
 
 namespace TinySTL
 {
